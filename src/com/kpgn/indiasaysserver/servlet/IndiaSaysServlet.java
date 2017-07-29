@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import com.kpgn.indiasaysserver.application.ApplicationConstant;
 import com.kpgn.indiasaysserver.application.QuestionOptionsUtil;
 import com.kpgn.indiasaysserver.database.MySqlDBCreateScript;
+import com.kpgn.indiasaysserver.entity.QuestionOptions;
 import com.kpgn.indiasaysserver.server.QuestionOptionsMySqlDBServer;
+import com.kpgn.indiasaysserver.server.QuestionResultMySqlDBServer;
 
 public class IndiaSaysServlet extends HttpServlet {
 	
@@ -38,7 +40,9 @@ public class IndiaSaysServlet extends HttpServlet {
 	    	timeInterval = System.currentTimeMillis() - (ApplicationConstant.INVALIDATE_CODE_TIMEOUT_IN_MINUTES * 60 * 1000);
 	    	System.out.println("Invalidating questions prior to: " + new Date(timeInterval) + " - " + timeInterval);
 	    	QuestionOptionsMySqlDBServer.getInstance().invalidateOldQuestions();
-	    	QuestionOptionsMySqlDBServer.getInstance().createNewQuestionOptions(QuestionOptionsUtil.getQuestionOptions());
+	    	QuestionOptions questionOptions = QuestionOptionsUtil.getQuestionOptions();
+	    	QuestionOptionsMySqlDBServer.getInstance().createNewQuestionOptions(questionOptions);
+	    	QuestionResultMySqlDBServer.getInstance().createQuestionResultBatch(questionOptions);
 	    }
 	};
 

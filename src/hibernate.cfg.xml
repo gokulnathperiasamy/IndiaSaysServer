@@ -19,5 +19,6 @@
 		<property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
 		<!-- List of XML mapping files -->
 		<mapping resource="QuestionOptions.hbm.xml" />
+		<mapping resource="QuestionResult.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

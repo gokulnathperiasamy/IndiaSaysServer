@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.kpgn.indiasaysserver.server.QuestionOptionsMySqlDBServer;
+import com.kpgn.indiasaysserver.server.QuestionResultMySqlDBServer;
 
 public class MySqlDBCreateScript extends MySqlDBHelper {
 	
@@ -43,6 +44,7 @@ public class MySqlDBCreateScript extends MySqlDBHelper {
 	private static void runDBCreateScript() throws SQLException {
 		statement = connection.createStatement();
 		statement.executeUpdate(QuestionOptionsMySqlDBServer.TABLE_CREATE_SQL);
+		statement.executeUpdate(QuestionResultMySqlDBServer.TABLE_CREATE_SQL);
 	}
 
 }
