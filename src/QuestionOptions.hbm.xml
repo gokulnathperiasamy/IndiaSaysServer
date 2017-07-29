@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.kpgn.indiasaysserver.entity.QuestionOptions" table="QuestionOptions">
+		<meta attribute="class-description">
+			This class contains list of questions and
+			respective options.
+		</meta>
+		<id name="question" type="string" column="Question" />
+		<property name="optionA" column="OptionA" type="string" />
+		<property name="optionB" column="OptionB" type="string" />
+		<property name="optionC" column="OptionC" type="string" />
+		<property name="optionD" column="OptionD" type="string" />
+		<property name="isValid" column="IsValid" type="boolean" />
+		<property name="isAgeRestricted" column="IsAgeRestricted" type="boolean" />
+		<property name="dateCreated" column="DateCreated" type="long" />
+		<property name="rowUpdated" column="RowUpdated" type="long" />
+	</class>
+</hibernate-mapping>
