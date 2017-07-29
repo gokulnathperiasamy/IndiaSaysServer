@@ -28,21 +28,21 @@ public class QuestionOptionsMySqlDBServer extends BaseMySqlDBServer {
 	
 	private static Transaction transaction;
 	
-	private static QuestionOptionsMySqlDBServer authCodeMySqlDBServer;
+	private static QuestionOptionsMySqlDBServer questionOptionsMySqlDBServer;
 	
 	private QuestionOptionsMySqlDBServer() {
 		// Make it a singleton class...
 	}
 	
 	public static QuestionOptionsMySqlDBServer getInstance() {
-		if (authCodeMySqlDBServer == null) {
+		if (questionOptionsMySqlDBServer == null) {
 			synchronized (QuestionOptionsMySqlDBServer.class) {
-				if (authCodeMySqlDBServer == null) {
-					authCodeMySqlDBServer = new QuestionOptionsMySqlDBServer();
+				if (questionOptionsMySqlDBServer == null) {
+					questionOptionsMySqlDBServer = new QuestionOptionsMySqlDBServer();
 				}
 			}
 		}
-		return authCodeMySqlDBServer;
+		return questionOptionsMySqlDBServer;
 	}
 	
 	public synchronized boolean invalidateOldQuestions() {
