@@ -5,7 +5,6 @@ import java.util.ListIterator;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 
 import com.kpgn.indiasaysserver.entity.IQuestionOptions;
