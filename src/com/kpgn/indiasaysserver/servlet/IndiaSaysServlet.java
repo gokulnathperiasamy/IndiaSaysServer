@@ -23,8 +23,8 @@ public class IndiaSaysServlet extends HttpServlet {
 	
 	public void init() throws ServletException {
 		System.out.println("**********************************************************************");  
-		System.out.println("AuthCode - Tomcat started successfully.");
-		System.out.println("AuthCode - Checking for DB schema.");
+		System.out.println("IndiaSays - Tomcat started successfully.");
+		System.out.println("IndiaSays - Checking for DB schema.");
 		MySqlDBCreateScript.createDBAndTable();
 		setupScheduler();
 		System.out.println("**********************************************************************");

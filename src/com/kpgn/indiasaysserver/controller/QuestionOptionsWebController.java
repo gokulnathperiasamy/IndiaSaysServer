@@ -11,8 +11,6 @@ import com.kpgn.indiasaysserver.server.QuestionOptionsMySqlDBServer;
 @Path("/qowc")
 public class QuestionOptionsWebController {
 	
-	/*************************** Check Connection ****************************/
-	
 	@GET
     @Path("/getquestionoptions")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

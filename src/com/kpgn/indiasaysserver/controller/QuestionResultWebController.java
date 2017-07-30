@@ -18,8 +18,6 @@ import com.kpgn.indiasaysserver.server.QuestionResultMySqlDBServer;
 @Path("/qrwc")
 public class QuestionResultWebController {
 	
-	/*************************** Check Connection ****************************/
-	
 	@POST
     @Path("/updatequestionresult")
 	@Produces({ MediaType.TEXT_PLAIN})
