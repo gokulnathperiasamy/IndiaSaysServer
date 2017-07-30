@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.application;
+package com.kpgn.indiasaysserver.utility;
 
 import com.kpgn.indiasaysserver.entity.QuestionResult;
 

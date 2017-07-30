@@ -11,11 +11,11 @@ public class QuestionResult extends BaseEntity {
 	private String questionID;
 	private String question;
 	private String gender;
-	private long ageGroup_00_14;
-	private long ageGroup_15_24;
-	private long ageGroup_25_34;
-	private long ageGroup_35_44;
-	private long ageGroup_45_99;
+	private long ageGroup_00_14 = 0;
+	private long ageGroup_15_24 = 0;
+	private long ageGroup_25_34 = 0;
+	private long ageGroup_35_44 = 0;
+	private long ageGroup_45_99 = 0;
 	
 	public QuestionResult() {
 		

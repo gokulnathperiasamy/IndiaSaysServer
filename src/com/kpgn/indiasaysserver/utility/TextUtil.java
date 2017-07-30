@@ -1,6 +1,8 @@
-package com.kpgn.indiasaysserver.application;
+package com.kpgn.indiasaysserver.utility;
 
 public abstract class TextUtil {
+	
+	public static final String STRING_DELIMITER = "|";
 
 	public static boolean isNotEmpty(String string) {
 		if (string != null && string.length() > 0) {

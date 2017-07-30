@@ -9,11 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 import com.kpgn.indiasaysserver.application.ApplicationConstant;
-import com.kpgn.indiasaysserver.application.QuestionOptionsUtil;
 import com.kpgn.indiasaysserver.database.MySqlDBCreateScript;
 import com.kpgn.indiasaysserver.entity.QuestionOptions;
 import com.kpgn.indiasaysserver.server.QuestionOptionsMySqlDBServer;
 import com.kpgn.indiasaysserver.server.QuestionResultMySqlDBServer;
+import com.kpgn.indiasaysserver.utility.QuestionOptionsUtil;
 
 public class IndiaSaysServlet extends HttpServlet {
 	
