@@ -61,8 +61,7 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 			questionResult = new QuestionResult();
 			questionResult.setQuestionID(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
 					+ TextUtil.STRING_DELIMITER 
-					+ QuestionResultConstant.GENDER_MALE 
-					+ QuestionResultConstant.AGE_GROUP_00_14);
+					+ QuestionResultConstant.GENDER_MALE);
 			questionResult.setQuestion(questionOptions.getQuestion());
 			questionResult.setGender(QuestionResultConstant.GENDER_MALE);
 			questionResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
@@ -71,92 +70,12 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 			questionResult = new QuestionResult();
 			questionResult.setQuestionID(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
 					+ TextUtil.STRING_DELIMITER 
-					+ QuestionResultConstant.GENDER_MALE 
-					+ QuestionResultConstant.AGE_GROUP_15_24);
-			questionResult.setQuestion(questionOptions.getQuestion());
-			questionResult.setGender(QuestionResultConstant.GENDER_MALE);
-			questionResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
-			session.save(questionResult);
-			
-			questionResult = new QuestionResult();
-			questionResult.setQuestionID(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-					+ TextUtil.STRING_DELIMITER 
-					+ QuestionResultConstant.GENDER_MALE 
-					+ QuestionResultConstant.AGE_GROUP_25_34);
-			questionResult.setQuestion(questionOptions.getQuestion());
-			questionResult.setGender(QuestionResultConstant.GENDER_MALE);
-			questionResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
-			session.save(questionResult);
-			
-			questionResult = new QuestionResult();
-			questionResult.setQuestionID(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-					+ TextUtil.STRING_DELIMITER 
-					+ QuestionResultConstant.GENDER_MALE 
-					+ QuestionResultConstant.AGE_GROUP_35_44);
-			questionResult.setQuestion(questionOptions.getQuestion());
-			questionResult.setGender(QuestionResultConstant.GENDER_MALE);
-			questionResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
-			session.save(questionResult);
-			
-			questionResult = new QuestionResult();
-			questionResult.setQuestionID(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-					+ TextUtil.STRING_DELIMITER 
-					+ QuestionResultConstant.GENDER_MALE 
-					+ QuestionResultConstant.AGE_GROUP_45_99);
-			questionResult.setQuestion(questionOptions.getQuestion());
-			questionResult.setGender(QuestionResultConstant.GENDER_MALE);
-			questionResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
-			session.save(questionResult);
-			
-			questionResult = new QuestionResult();
-			questionResult.setQuestionID(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-					+ TextUtil.STRING_DELIMITER 
-					+ QuestionResultConstant.GENDER_FEMALE 
-					+ QuestionResultConstant.AGE_GROUP_00_14);
+					+ QuestionResultConstant.GENDER_FEMALE);
 			questionResult.setQuestion(questionOptions.getQuestion());
 			questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
 			questionResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
 			session.save(questionResult);
 			
-			questionResult = new QuestionResult();
-			questionResult.setQuestionID(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-					+ TextUtil.STRING_DELIMITER 
-					+ QuestionResultConstant.GENDER_FEMALE 
-					+ QuestionResultConstant.AGE_GROUP_15_24);
-			questionResult.setQuestion(questionOptions.getQuestion());
-			questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
-			questionResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
-			session.save(questionResult);
-			
-			questionResult = new QuestionResult();
-			questionResult.setQuestionID(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-					+ TextUtil.STRING_DELIMITER 
-					+ QuestionResultConstant.GENDER_FEMALE 
-					+ QuestionResultConstant.AGE_GROUP_25_34);
-			questionResult.setQuestion(questionOptions.getQuestion());
-			questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
-			questionResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
-			session.save(questionResult);
-			
-			questionResult = new QuestionResult();
-			questionResult.setQuestionID(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-					+ TextUtil.STRING_DELIMITER 
-					+ QuestionResultConstant.GENDER_FEMALE 
-					+ QuestionResultConstant.AGE_GROUP_35_44);
-			questionResult.setQuestion(questionOptions.getQuestion());
-			questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
-			questionResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
-			session.save(questionResult);
-			
-			questionResult = new QuestionResult();
-			questionResult.setQuestionID(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-					+ TextUtil.STRING_DELIMITER 
-					+ QuestionResultConstant.GENDER_FEMALE 
-					+ QuestionResultConstant.AGE_GROUP_45_99);
-			questionResult.setQuestion(questionOptions.getQuestion());
-			questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
-			questionResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
-			session.save(questionResult);
 			
 			transaction.commit();
 			return true;
