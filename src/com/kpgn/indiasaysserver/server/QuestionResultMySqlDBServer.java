@@ -193,6 +193,7 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 					qResult.setAgeGroup_25_34(qResult.getAgeGroup_25_34() + questionResult.getAgeGroup_25_34());
 					qResult.setAgeGroup_35_44(qResult.getAgeGroup_35_44() + questionResult.getAgeGroup_35_44());
 					qResult.setAgeGroup_45_99(qResult.getAgeGroup_45_99() + questionResult.getAgeGroup_45_99());
+					qResult.setRowUpdated(TimeUtil.getCurrentTimeInLong());
 					session.update(qResult);
 				}
 			}
