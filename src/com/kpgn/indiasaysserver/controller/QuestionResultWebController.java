@@ -1,6 +1,9 @@
 package com.kpgn.indiasaysserver.controller;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -26,6 +29,13 @@ public class QuestionResultWebController {
         	return Response.status(HttpStatus.SC_OK).build();
         }
         return Response.status(HttpStatus.SC_BAD_REQUEST).build();
+    }
+	
+	@GET
+    @Path("/getallquestionresults")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+    public ArrayList<QuestionResult> getAllQuestionResults() {
+        return QuestionResultMySqlDBServer.getInstance().getAllQuestionResult();
     }
 	
 }

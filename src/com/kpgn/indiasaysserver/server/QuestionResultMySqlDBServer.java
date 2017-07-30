@@ -1,5 +1,6 @@
 package com.kpgn.indiasaysserver.server;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -177,6 +178,41 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 		return false;
 	}
 	
+	public synchronized ArrayList<QuestionResult> getAllQuestionResult() {
+		if (factory == null) createFactory();
+		if (session == null) session = factory.openSession();
+		transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			ArrayList<QuestionResult> questionResultResponse = new ArrayList<>();
+			List<?> questionResultList = session.createCriteria(QuestionResult.class).list();
+			if (questionResultList != null) {
+				ListIterator<?> questionResultListIterator = questionResultList.listIterator();
+				while (questionResultListIterator != null && questionResultListIterator.hasNext()) {
+					QuestionResult qResult = (QuestionResult) questionResultListIterator.next();
+					questionResultResponse.add(qResult);
+				}
+			}
+			transaction.commit();
+			return questionResultResponse;
+		} catch (HibernateException he) {
+			if (transaction != null) {
+				transaction.rollback();
+				transaction = null;
+			} 
+			he.printStackTrace();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+				transaction = null;
+			}
+			e.printStackTrace();
+		} finally {
+			if (session != null) { session.close(); session = null; } 
+		}
+		return null;
+	}
+	
 	public synchronized boolean updateResult(QuestionResult questionResult) {
 		if (factory == null) createFactory();
 		if (session == null) session = factory.openSession();
@@ -216,6 +252,5 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 		}
 		return false;
 	}
-	
 	
 }
