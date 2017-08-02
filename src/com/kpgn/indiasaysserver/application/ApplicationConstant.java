@@ -9,7 +9,7 @@ public abstract class ApplicationConstant {
 	public static final String MySQL_USER_NAME = "root";				// Change in Hibernate CFG XML also.
 	public static final String MySQL_PASSWORD = "root";					// Change in Hibernate CFG XML also.
 	
-	private static final int INVALIDATE_CODE_TIMEOUT_IN_DAYS = 7;		// In Days
+	private static final int INVALIDATE_CODE_TIMEOUT_IN_DAYS = 1;		// In Days
 	
 	// Invalidate question for each INVALIDATE_CODE_TIMEOUT_IN_DAYS in days - Production
 	// public static final int INVALIDATE_CODE_TIMEOUT_IN_MINUTES = INVALIDATE_CODE_TIMEOUT_IN_DAYS * 1440;	// In minutes (24 hours = 1440 minutes)

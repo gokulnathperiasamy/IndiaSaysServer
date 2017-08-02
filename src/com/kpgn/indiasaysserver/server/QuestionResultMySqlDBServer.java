@@ -132,6 +132,41 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 		return null;
 	}
 	
+	public synchronized ArrayList<QuestionResult> getSingleQuestionResult(String question) {
+		if (factory == null) createFactory();
+		if (session == null) session = factory.openSession();
+		transaction = null;
+		try {
+			transaction = session.beginTransaction();
+			ArrayList<QuestionResult> questionResultResponse = new ArrayList<>();
+			List<?> questionResultList = session.createCriteria(QuestionResult.class).add(Restrictions.eq("question", question)).list();
+			if (questionResultList != null) {
+				ListIterator<?> questionResultListIterator = questionResultList.listIterator();
+				while (questionResultListIterator != null && questionResultListIterator.hasNext()) {
+					QuestionResult qResult = (QuestionResult) questionResultListIterator.next();
+					questionResultResponse.add(qResult);
+				}
+			}
+			transaction.commit();
+			return questionResultResponse;
+		} catch (HibernateException he) {
+			if (transaction != null) {
+				transaction.rollback();
+				transaction = null;
+			} 
+			he.printStackTrace();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+				transaction = null;
+			}
+			e.printStackTrace();
+		} finally {
+			if (session != null) { session.close(); session = null; } 
+		}
+		return null;
+	}
+	
 	public synchronized boolean updateResult(QuestionResult questionResult) {
 		if (factory == null) createFactory();
 		if (session == null) session = factory.openSession();
