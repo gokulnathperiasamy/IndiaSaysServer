@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.kpgn.indiasaysserver.entity.QuestionResult" table="QuestionResult">
+		<meta attribute="class-description">
+			This class contains list of questions and
+			respective answer.
+		</meta>
+		<id name="questionID" type="string" column="QuestionID" />
+		<property name="question" column="Question" type="string" />
+		<property name="gender" column="Gender" type="string" />
+		<property name="ageGroup_00_14" column="Age_Group_00_14" type="long" />
+		<property name="ageGroup_15_24" column="Age_Group_15_24" type="long" />
+		<property name="ageGroup_25_34" column="Age_Group_25_34" type="long" />
+		<property name="ageGroup_35_44" column="Age_Group_35_44" type="long" />
+		<property name="ageGroup_45_99" column="Age_Group_45_99" type="long" />
+		<property name="rowUpdated" column="RowUpdated" type="long" />
+	</class>
+	
+</hibernate-mapping>
