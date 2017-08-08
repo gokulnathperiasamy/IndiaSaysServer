@@ -18,7 +18,7 @@ public abstract class TextUtil {
 		return string;
 	}
 
-	public static double getRandomDouble(double min, double max) {
-		return Math.floor(Math.random() * (max - min + 1) + min);
+	public static int getRandomInt(double min, double max) {
+		return (int) Math.floor(Math.random() * (max - min + 1) + min);
 	}
 }

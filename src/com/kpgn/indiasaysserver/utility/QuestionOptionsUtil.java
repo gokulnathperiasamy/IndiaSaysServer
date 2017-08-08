@@ -8,11 +8,19 @@ public final class QuestionOptionsUtil {
 	
 	public static QuestionOptions getQuestionOptions() {
 		QuestionOptions questionOptions = new QuestionOptions();
-		questionOptions.setQuestion("Q1" + TextUtil.getRandomDouble(1000000, 9999999));
-		questionOptions.setOptionA("A1");
-		questionOptions.setOptionB("B1");
+		questionOptions.setQuestion("Question " + TextUtil.getRandomInt(1000000, 9999999));
+		questionOptions.setOptionA("A " + TextUtil.getRandomInt(100, 199));
+		questionOptions.setOptionB("B " + TextUtil.getRandomInt(200, 299));
 		questionOptions.setIsValid(true);
 		questionOptions.setIsAgeRestricted(false);
+		int rand = TextUtil.getRandomInt(1000, 9999);
+		if (rand % 2 == 0) {
+			questionOptions.setOptionD("C " + TextUtil.getRandomInt(300, 399));
+			questionOptions.setIsAgeRestricted(true);
+		} else if (rand %3 == 0) {
+			questionOptions.setOptionC("C " + TextUtil.getRandomInt(300, 399));
+			questionOptions.setOptionD("D " + TextUtil.getRandomInt(400, 499));
+		}
 		questionOptions.setDateCreated(new Date().getTime());
 		questionOptions.setRowUpdated(new Date().getTime());
 		return questionOptions;
