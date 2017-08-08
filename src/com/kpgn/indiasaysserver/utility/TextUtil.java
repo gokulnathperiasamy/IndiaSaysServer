@@ -17,6 +17,13 @@ public abstract class TextUtil {
 		}
 		return string;
 	}
+	
+	public static String removeSpaces(String string) {
+		if (string != null && string.length() > 0) {
+			return string.replaceAll(" ", "");
+		}
+		return string;
+	}
 
 	public static int getRandomInt(double min, double max) {
 		return (int) Math.floor(Math.random() * (max - min + 1) + min);

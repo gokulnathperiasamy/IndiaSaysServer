@@ -11,6 +11,7 @@
 		<id name="questionID" type="string" column="QuestionID" />
 		<property name="question" column="Question" type="string" />
 		<property name="gender" column="Gender" type="string" />
+		<property name="options" column="Options" type="string" />
 		<property name="ageGroup_00_14" column="Age_Group_00_14" type="long" />
 		<property name="ageGroup_15_24" column="Age_Group_15_24" type="long" />
 		<property name="ageGroup_25_34" column="Age_Group_25_34" type="long" />
