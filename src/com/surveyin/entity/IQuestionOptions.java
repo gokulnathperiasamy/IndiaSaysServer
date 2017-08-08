@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.entity;
+package com.surveyin.entity;
 
 public interface IQuestionOptions extends IEntity {
 	public static final String QUESTION_OPTIONS = "QuestionOptions";

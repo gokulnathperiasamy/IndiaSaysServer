@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.database;
+package com.surveyin.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.kpgn.indiasaysserver.application.ApplicationConstant;
+import com.surveyin.application.ApplicationConstant;
 
 public class MySqlDBHelper extends DBHelper {
 	

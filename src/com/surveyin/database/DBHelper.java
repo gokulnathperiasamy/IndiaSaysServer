@@ -1,8 +1,8 @@
-package com.kpgn.indiasaysserver.database;
+package com.surveyin.database;
 
 import java.sql.Connection;
 
-import com.kpgn.indiasaysserver.application.ApplicationConstant;
+import com.surveyin.application.ApplicationConstant;
 
 public abstract class DBHelper {
 	

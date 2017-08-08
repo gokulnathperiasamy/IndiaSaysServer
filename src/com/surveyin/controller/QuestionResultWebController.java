@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.controller;
+package com.surveyin.controller;
 
 import java.util.ArrayList;
 
@@ -13,8 +13,8 @@ import javax.ws.rs.core.Response;
 
 import org.apache.http.HttpStatus;
 
-import com.kpgn.indiasaysserver.entity.QuestionResult;
-import com.kpgn.indiasaysserver.server.QuestionResultMySqlDBServer;
+import com.surveyin.entity.QuestionResult;
+import com.surveyin.server.QuestionResultMySqlDBServer;
 
 @Path("/qrwc")
 public class QuestionResultWebController {

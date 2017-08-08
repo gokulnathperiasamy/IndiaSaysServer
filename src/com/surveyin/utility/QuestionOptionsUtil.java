@@ -1,8 +1,8 @@
-package com.kpgn.indiasaysserver.utility;
+package com.surveyin.utility;
 
 import java.util.Date;
 
-import com.kpgn.indiasaysserver.entity.QuestionOptions;
+import com.surveyin.entity.QuestionOptions;
 
 public final class QuestionOptionsUtil {
 	

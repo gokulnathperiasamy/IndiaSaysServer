@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.server;
+package com.surveyin.server;
 
 public abstract class BaseDBServer {
 

@@ -1,8 +1,8 @@
-package com.kpgn.indiasaysserver.application;
+package com.surveyin.application;
 
 public abstract class ApplicationConstant {
 	
-	public static final String DB_NAME = "IndiaSaysDB";					// Change in Hibernate CFG XML also.
+	public static final String DB_NAME = "SurveyINDB";					// Change in Hibernate CFG XML also.
 	
 	public static final String MySQL_SERVER_IP = "localhost";			// Change in Hibernate CFG XML also.
 	public static final String MySQL_SERVER_PORT = "3306";

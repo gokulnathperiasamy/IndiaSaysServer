@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.server;
+package com.surveyin.server;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +8,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.kpgn.indiasaysserver.application.QuestionResultConstant;
-import com.kpgn.indiasaysserver.entity.IQuestionResult;
-import com.kpgn.indiasaysserver.entity.QuestionOptions;
-import com.kpgn.indiasaysserver.entity.QuestionResult;
-import com.kpgn.indiasaysserver.utility.TextUtil;
-import com.kpgn.indiasaysserver.utility.TimeUtil;
+import com.surveyin.application.QuestionResultConstant;
+import com.surveyin.entity.IQuestionResult;
+import com.surveyin.entity.QuestionOptions;
+import com.surveyin.entity.QuestionResult;
+import com.surveyin.utility.TextUtil;
+import com.surveyin.utility.TimeUtil;
 
 public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 	

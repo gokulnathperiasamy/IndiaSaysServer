@@ -1,11 +1,11 @@
-package com.kpgn.indiasaysserver.database;
+package com.surveyin.database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.kpgn.indiasaysserver.server.QuestionOptionsMySqlDBServer;
-import com.kpgn.indiasaysserver.server.QuestionResultMySqlDBServer;
+import com.surveyin.server.QuestionOptionsMySqlDBServer;
+import com.surveyin.server.QuestionResultMySqlDBServer;
 
 public class MySqlDBCreateScript extends MySqlDBHelper {
 	

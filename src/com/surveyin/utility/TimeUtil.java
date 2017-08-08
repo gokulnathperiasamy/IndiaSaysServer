@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.utility;
+package com.surveyin.utility;
 
 import java.util.Date;
 

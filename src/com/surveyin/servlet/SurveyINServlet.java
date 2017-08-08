@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.servlet;
+package com.surveyin.servlet;
 
 import java.util.Date;
 import java.util.concurrent.Executors;
@@ -8,14 +8,14 @@ import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
-import com.kpgn.indiasaysserver.application.ApplicationConstant;
-import com.kpgn.indiasaysserver.database.MySqlDBCreateScript;
-import com.kpgn.indiasaysserver.entity.QuestionOptions;
-import com.kpgn.indiasaysserver.server.QuestionOptionsMySqlDBServer;
-import com.kpgn.indiasaysserver.server.QuestionResultMySqlDBServer;
-import com.kpgn.indiasaysserver.utility.QuestionOptionsUtil;
+import com.surveyin.application.ApplicationConstant;
+import com.surveyin.database.MySqlDBCreateScript;
+import com.surveyin.entity.QuestionOptions;
+import com.surveyin.server.QuestionOptionsMySqlDBServer;
+import com.surveyin.server.QuestionResultMySqlDBServer;
+import com.surveyin.utility.QuestionOptionsUtil;
 
-public class IndiaSaysServlet extends HttpServlet {
+public class SurveyINServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -23,8 +23,8 @@ public class IndiaSaysServlet extends HttpServlet {
 	
 	public void init() throws ServletException {
 		System.out.println("**********************************************************************");  
-		System.out.println("IndiaSays - Tomcat started successfully.");
-		System.out.println("IndiaSays - Checking for DB schema.");
+		System.out.println("SurveyIN - Tomcat started successfully.");
+		System.out.println("SurveyIN - Checking for DB schema.");
 		MySqlDBCreateScript.createDBAndTable();
 		setupScheduler();
 		System.out.println("**********************************************************************");

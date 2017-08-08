@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.application;
+package com.surveyin.application;
 
 public class QuestionResultConstant {
 	public static final String GENDER_MALE = "M";

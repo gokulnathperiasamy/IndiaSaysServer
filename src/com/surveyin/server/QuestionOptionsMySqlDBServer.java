@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.server;
+package com.surveyin.server;
 
 import java.util.List;
 import java.util.ListIterator;
@@ -7,8 +7,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.kpgn.indiasaysserver.entity.IQuestionOptions;
-import com.kpgn.indiasaysserver.entity.QuestionOptions;
+import com.surveyin.entity.IQuestionOptions;
+import com.surveyin.entity.QuestionOptions;
 
 public class QuestionOptionsMySqlDBServer extends BaseMySqlDBServer {
 	

@@ -1,4 +1,4 @@
-package com.kpgn.indiasaysserver.server;
+package com.surveyin.server;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
