@@ -1,11 +1,11 @@
 package com.surveyin.server;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 import com.surveyin.entity.IQuestionOptions;
 import com.surveyin.entity.QuestionOptions;
@@ -81,13 +81,15 @@ public class QuestionOptionsMySqlDBServer extends BaseMySqlDBServer {
 	}
 	
 	
-	public synchronized boolean createNewQuestionOptions(QuestionOptions questionOptions) {
+	public synchronized boolean createNewQuestionOptions(List<QuestionOptions> questionOptionsList) {
 		if (factory == null) createFactory();
 		if (session == null) session = factory.openSession();
 		transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			session.save(questionOptions);
+			for (int index = 0; index < questionOptionsList.size(); index++) {				
+				session.save(questionOptionsList.get(index));
+			}
 			transaction.commit();
 			return true;
 		} catch (HibernateException he) {
@@ -108,21 +110,28 @@ public class QuestionOptionsMySqlDBServer extends BaseMySqlDBServer {
 		return false;
 	}
 	
-	public synchronized QuestionOptions getCurrentQuestionOptions() {
-		QuestionOptions questionOptions;
+	public synchronized ArrayList<QuestionOptions> getCurrentQuestionOptions() {
+		//QuestionOptions questionOptions;
 		
 		if (factory == null) createFactory();
 		if (session == null) session = factory.openSession();
 		transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			questionOptions = (QuestionOptions) session.createCriteria(QuestionOptions.class)
-					.add(Restrictions.eq("isValid", true))
-				    .uniqueResult();
-			if (questionOptions != null) {
-				transaction.commit();
-				return questionOptions;
+			
+			ArrayList<QuestionOptions> questionOptionsResponse = new ArrayList<>();			
+			List<?> questionOptionsList = session.createCriteria(QuestionOptions.class).list();
+			if (questionOptionsList != null) {
+				ListIterator<?> questionOptionsListIterator = questionOptionsList.listIterator();
+				while (questionOptionsListIterator != null && questionOptionsListIterator.hasNext()) {
+					QuestionOptions qResult = (QuestionOptions) questionOptionsListIterator.next();
+					if(qResult.getIsValid() == true) {
+						questionOptionsResponse.add(qResult);						
+					}
+				}
 			}
+			transaction.commit();
+			return questionOptionsResponse;
 		} catch (HibernateException he) {
 			if (transaction != null) {
 				transaction.rollback();

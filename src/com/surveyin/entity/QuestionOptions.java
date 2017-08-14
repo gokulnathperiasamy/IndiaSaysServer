@@ -88,7 +88,7 @@ public class QuestionOptions extends BaseEntity {
 		this.isValid = isValid;
 	}
 	
-	@XmlElement(name=IQuestionOptions.DATE_CREATED)
+	@XmlElement(name=IQuestionOptions.IS_AGE_RESTRICTED)
 	public boolean getIsAgeRestricted() {
 		return isAgeRestricted;
 	}

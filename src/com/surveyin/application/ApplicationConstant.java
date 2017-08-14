@@ -9,6 +9,7 @@ public abstract class ApplicationConstant {
 	public static final String MySQL_USER_NAME = "root";				// Change in Hibernate CFG XML also.
 	public static final String MySQL_PASSWORD = "root";					// Change in Hibernate CFG XML also.
 	
+	public static final String SURVEYIN_QUESTIONSJSON_PATH = "/webapps/SurveyINQuestions.json";
 	private static final int INVALIDATE_CODE_TIMEOUT_IN_DAYS = 7;		// In Days
 	
 	// Invalidate question for each INVALIDATE_CODE_TIMEOUT_IN_DAYS in days - AWS - Production

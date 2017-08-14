@@ -51,7 +51,7 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 		return questionResultMySqlDBServer;
 	}
 	
-	public synchronized boolean createQuestionResultBatch(QuestionOptions questionOptions) {
+	public synchronized boolean createQuestionResultBatch(List<QuestionOptions> questionOptionsList) {
 		if (factory == null) createFactory();
 		if (session == null) session = factory.openSession();
 		transaction = null;
@@ -61,112 +61,121 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 			
 			long rowUpdated = TimeUtil.getCurrentTimeInLong();
 			
-			// Option A
-			if (TextUtil.isNotEmpty(questionOptions.getOptionA())) {
-				questionResult = new QuestionResult();
-				questionResult.setQuestionID(TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptions.getQuestion(), 200)
-						+ TextUtil.STRING_DELIMITER 
-						+ QuestionResultConstant.GENDER_MALE
-						+ TextUtil.STRING_DELIMITER
-						+ questionOptions.getOptionA()));
-				questionResult.setQuestion(questionOptions.getQuestion());
-				questionResult.setGender(QuestionResultConstant.GENDER_MALE);
-				questionResult.setOptions(questionOptions.getOptionA());
-				questionResult.setRowUpdated(rowUpdated);
-				session.save(questionResult);
-				
-				questionResult = new QuestionResult();
-				questionResult.setQuestionID(TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-						+ TextUtil.STRING_DELIMITER 
-						+ QuestionResultConstant.GENDER_FEMALE
-						+ TextUtil.STRING_DELIMITER
-						+ questionOptions.getOptionA()));
-				questionResult.setQuestion(questionOptions.getQuestion());
-				questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
-				questionResult.setOptions(questionOptions.getOptionA());
-				questionResult.setRowUpdated(rowUpdated);
-				session.save(questionResult);
-			}
-			
-			// Option B
-			if (TextUtil.isNotEmpty(questionOptions.getOptionB())) {
-				questionResult = new QuestionResult();
-				questionResult.setQuestionID(TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-						+ TextUtil.STRING_DELIMITER 
-						+ QuestionResultConstant.GENDER_MALE
-						+ TextUtil.STRING_DELIMITER
-						+ questionOptions.getOptionB()));
-				questionResult.setQuestion(questionOptions.getQuestion());
-				questionResult.setGender(QuestionResultConstant.GENDER_MALE);
-				questionResult.setOptions(questionOptions.getOptionB());
-				questionResult.setRowUpdated(rowUpdated);
-				session.save(questionResult);
-				
-				questionResult = new QuestionResult();
-				questionResult.setQuestionID(TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptions.getQuestion(), 200)
-						+ TextUtil.STRING_DELIMITER 
-						+ QuestionResultConstant.GENDER_FEMALE
-						+ TextUtil.STRING_DELIMITER
-						+ questionOptions.getOptionB()));
-				questionResult.setQuestion(questionOptions.getQuestion());
-				questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
-				questionResult.setOptions(questionOptions.getOptionB());
-				questionResult.setRowUpdated(rowUpdated);
-				session.save(questionResult);
-			}
-			
-			// Option C
-			if (TextUtil.isNotEmpty(questionOptions.getOptionC())) {
-				questionResult = new QuestionResult();
-				questionResult.setQuestionID(TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-						+ TextUtil.STRING_DELIMITER 
-						+ QuestionResultConstant.GENDER_MALE
-						+ TextUtil.STRING_DELIMITER
-						+ questionOptions.getOptionC()));
-				questionResult.setQuestion(questionOptions.getQuestion());
-				questionResult.setGender(QuestionResultConstant.GENDER_MALE);
-				questionResult.setOptions(questionOptions.getOptionC());
-				questionResult.setRowUpdated(rowUpdated);
-				session.save(questionResult);
-				
-				questionResult = new QuestionResult();
-				questionResult.setQuestionID(TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptions.getQuestion(), 200)
-						+ TextUtil.STRING_DELIMITER 
-						+ QuestionResultConstant.GENDER_FEMALE
-						+ TextUtil.STRING_DELIMITER
-						+ questionOptions.getOptionC()));
-				questionResult.setQuestion(questionOptions.getQuestion());
-				questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
-				questionResult.setOptions(questionOptions.getOptionC());
-				questionResult.setRowUpdated(rowUpdated);
-				session.save(questionResult);
-			}
-			
-			// Option D
-			if (TextUtil.isNotEmpty(questionOptions.getOptionD())) {
-				questionResult = new QuestionResult();
-				questionResult.setQuestionID(TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-						+ TextUtil.STRING_DELIMITER 
-						+ QuestionResultConstant.GENDER_MALE
-						+ TextUtil.STRING_DELIMITER
-						+ questionOptions.getOptionD()));
-				questionResult.setQuestion(questionOptions.getQuestion());
-				questionResult.setGender(QuestionResultConstant.GENDER_MALE);
-				questionResult.setOptions(questionOptions.getOptionD());
-				questionResult.setRowUpdated(rowUpdated);
-				session.save(questionResult);
+			for (int index = 0; index < questionOptionsList.size(); index++) {
 
-				questionResult = new QuestionResult();
-				questionResult.setQuestionID(TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptions.getQuestion(), 200) 
-						+ TextUtil.STRING_DELIMITER 
-						+ QuestionResultConstant.GENDER_FEMALE
-						+ TextUtil.STRING_DELIMITER
-						+ questionOptions.getOptionD()));
-				questionResult.setQuestion(questionOptions.getQuestion());
-				questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
-				questionResult.setOptions(questionOptions.getOptionD());
-				questionResult.setRowUpdated(rowUpdated);
-				session.save(questionResult);
+				// Option A
+				if (TextUtil.isNotEmpty(questionOptionsList.get(index).getOptionA())) {
+					questionResult = new QuestionResult();
+					questionResult.setQuestionID(
+							TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptionsList.get(index).getQuestion(), 200)
+									+ TextUtil.STRING_DELIMITER 
+									+ QuestionResultConstant.GENDER_MALE
+									+ TextUtil.STRING_DELIMITER 
+									+ questionOptionsList.get(index).getOptionA()));
+					questionResult.setQuestion(questionOptionsList.get(index).getQuestion());
+					questionResult.setGender(QuestionResultConstant.GENDER_MALE);
+					questionResult.setOptions(questionOptionsList.get(index).getOptionA());
+					questionResult.setRowUpdated(rowUpdated);
+					session.save(questionResult);
+
+					questionResult = new QuestionResult();
+					questionResult.setQuestionID(
+							TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptionsList.get(index).getQuestion(), 200)
+									+ TextUtil.STRING_DELIMITER 
+									+ QuestionResultConstant.GENDER_FEMALE
+									+ TextUtil.STRING_DELIMITER 
+									+ questionOptionsList.get(index).getOptionA()));
+					questionResult.setQuestion(questionOptionsList.get(index).getQuestion());
+					questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
+					questionResult.setOptions(questionOptionsList.get(index).getOptionA());
+					questionResult.setRowUpdated(rowUpdated);
+					session.save(questionResult);
+				}
+
+				// Option B
+				if (TextUtil.isNotEmpty(questionOptionsList.get(index).getOptionB())) {
+					questionResult = new QuestionResult();
+					questionResult.setQuestionID(
+							TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptionsList.get(index).getQuestion(), 200)
+									+ TextUtil.STRING_DELIMITER 
+									+ QuestionResultConstant.GENDER_MALE
+									+ TextUtil.STRING_DELIMITER 
+									+ questionOptionsList.get(index).getOptionB()));
+					questionResult.setQuestion(questionOptionsList.get(index).getQuestion());
+					questionResult.setGender(QuestionResultConstant.GENDER_MALE);
+					questionResult.setOptions(questionOptionsList.get(index).getOptionB());
+					questionResult.setRowUpdated(rowUpdated);
+					session.save(questionResult);
+
+					questionResult = new QuestionResult();
+					questionResult.setQuestionID(
+							TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptionsList.get(index).getQuestion(), 200)
+									+ TextUtil.STRING_DELIMITER + QuestionResultConstant.GENDER_FEMALE
+									+ TextUtil.STRING_DELIMITER + questionOptionsList.get(index).getOptionB()));
+					questionResult.setQuestion(questionOptionsList.get(index).getQuestion());
+					questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
+					questionResult.setOptions(questionOptionsList.get(index).getOptionB());
+					questionResult.setRowUpdated(rowUpdated);
+					session.save(questionResult);
+				}
+
+				// Option C
+				if (TextUtil.isNotEmpty(questionOptionsList.get(index).getOptionC())) {
+					questionResult = new QuestionResult();
+					questionResult.setQuestionID(
+							TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptionsList.get(index).getQuestion(), 200)
+									+ TextUtil.STRING_DELIMITER 
+									+ QuestionResultConstant.GENDER_MALE
+									+ TextUtil.STRING_DELIMITER 
+									+ questionOptionsList.get(index).getOptionC()));
+					questionResult.setQuestion(questionOptionsList.get(index).getQuestion());
+					questionResult.setGender(QuestionResultConstant.GENDER_MALE);
+					questionResult.setOptions(questionOptionsList.get(index).getOptionC());
+					questionResult.setRowUpdated(rowUpdated);
+					session.save(questionResult);
+
+					questionResult = new QuestionResult();
+					questionResult.setQuestionID(
+							TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptionsList.get(index).getQuestion(), 200)
+									+ TextUtil.STRING_DELIMITER 
+									+ QuestionResultConstant.GENDER_FEMALE
+									+ TextUtil.STRING_DELIMITER 
+									+ questionOptionsList.get(index).getOptionC()));
+					questionResult.setQuestion(questionOptionsList.get(index).getQuestion());
+					questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
+					questionResult.setOptions(questionOptionsList.get(index).getOptionC());
+					questionResult.setRowUpdated(rowUpdated);
+					session.save(questionResult);
+				}
+
+				// Option D
+				if (TextUtil.isNotEmpty(questionOptionsList.get(index).getOptionD())) {
+					questionResult = new QuestionResult();
+					questionResult.setQuestionID(
+							TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptionsList.get(index).getQuestion(), 200)
+									+ TextUtil.STRING_DELIMITER 
+									+ QuestionResultConstant.GENDER_MALE
+									+ TextUtil.STRING_DELIMITER 
+									+ questionOptionsList.get(index).getOptionD()));
+					questionResult.setQuestion(questionOptionsList.get(index).getQuestion());
+					questionResult.setGender(QuestionResultConstant.GENDER_MALE);
+					questionResult.setOptions(questionOptionsList.get(index).getOptionD());
+					questionResult.setRowUpdated(rowUpdated);
+					session.save(questionResult);
+
+					questionResult = new QuestionResult();
+					questionResult.setQuestionID(
+							TextUtil.removeSpaces(TextUtil.trimStringLength(questionOptionsList.get(index).getQuestion(), 200)
+									+ TextUtil.STRING_DELIMITER 
+									+ QuestionResultConstant.GENDER_FEMALE
+									+ TextUtil.STRING_DELIMITER 
+									+ questionOptionsList.get(index).getOptionD()));
+					questionResult.setQuestion(questionOptionsList.get(index).getQuestion());
+					questionResult.setGender(QuestionResultConstant.GENDER_FEMALE);
+					questionResult.setOptions(questionOptionsList.get(index).getOptionD());
+					questionResult.setRowUpdated(rowUpdated);
+					session.save(questionResult);
+				}
 			}
 			
 			transaction.commit();
