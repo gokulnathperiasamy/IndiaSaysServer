@@ -1,6 +1,7 @@
 package com.surveyin.servlet;
 
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -40,9 +41,9 @@ public class SurveyINServlet extends HttpServlet {
 	    	timeInterval = System.currentTimeMillis() - (ApplicationConstant.INVALIDATE_CODE_TIMEOUT_IN_MINUTES * 60 * 1000);
 	    	System.out.println("Invalidating questions prior to: " + new Date(timeInterval) + " - " + timeInterval);
 	    	QuestionOptionsMySqlDBServer.getInstance().invalidateOldQuestions();
-	    	QuestionOptions questionOptions = QuestionOptionsUtil.getQuestionOptions();
-	    	QuestionOptionsMySqlDBServer.getInstance().createNewQuestionOptions(questionOptions);
-	    	QuestionResultMySqlDBServer.getInstance().createQuestionResultBatch(questionOptions);
+	    	List<QuestionOptions> questionOptionsList = (List<QuestionOptions>) QuestionOptionsUtil.getQuestionOptions();
+	    	QuestionOptionsMySqlDBServer.getInstance().createNewQuestionOptions(questionOptionsList);
+	    	QuestionResultMySqlDBServer.getInstance().createQuestionResultBatch(questionOptionsList);
 	    }
 	};
 

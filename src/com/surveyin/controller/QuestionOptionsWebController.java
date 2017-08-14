@@ -1,5 +1,7 @@
 package com.surveyin.controller;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -14,7 +16,7 @@ public class QuestionOptionsWebController {
 	@GET
     @Path("/getquestionoptions")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public QuestionOptions getQuestionOptions() {
+    public ArrayList<QuestionOptions> getQuestionOptions() {
         return QuestionOptionsMySqlDBServer.getInstance().getCurrentQuestionOptions();
     }
 	
