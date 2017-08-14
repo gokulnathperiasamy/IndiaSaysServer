@@ -1,0 +1,11 @@
+machine:
+    environment:
+
+dependencies:
+    override:
+        - ant
+
+test:
+    override:
+        # copy the test results to the test results directory.
+        - cp -r dist/ $CIRCLE_ARTIFACTS
