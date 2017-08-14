@@ -10,7 +10,7 @@ public abstract class ApplicationConstant {
 	public static final String MySQL_PASSWORD = "root";					// Change in Hibernate CFG XML also.
 	
 	public static final String QUESTIONS_JSON_PATH = "/webapps/SurveyINQuestions.json";
-	public static final String CATALINA_HOME = "/webapps/SurveyINQuestions.json";
+	public static final String CATALINA_HOME = "catalina.home";			// CATALINA_HOME
 	
 	private static final int INVALIDATE_CODE_TIMEOUT_IN_DAYS = 7;		// In Days
 	
