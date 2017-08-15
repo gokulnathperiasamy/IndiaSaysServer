@@ -1,6 +1,7 @@
 package com.surveyin.server;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -9,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.surveyin.application.QuestionResultConstant;
+import com.surveyin.entity.IQuestionOptions;
 import com.surveyin.entity.IQuestionResult;
 import com.surveyin.entity.QuestionOptions;
 import com.surveyin.entity.QuestionResult;
@@ -198,23 +200,44 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 		return false;
 	}
 	
-	public synchronized ArrayList<QuestionResult> getAllQuestionResult() {
+	public synchronized ArrayList<HashMap<String, Object>> getAllQuestionResult() {
 		if (factory == null) createFactory();
 		if (session == null) session = factory.openSession();
 		transaction = null;
 		try {
 			transaction = session.beginTransaction();
-			ArrayList<QuestionResult> questionResultResponse = new ArrayList<>();
+			
+			ArrayList<HashMap<String,Object>> QuestionResultList = new ArrayList<>();
+			HashMap<String,Object> allQuestionResultObject;			
+			List<?> questionOptionsList = session.createCriteria(QuestionOptions.class).list();
 			List<?> questionResultList = session.createCriteria(QuestionResult.class).list();
-			if (questionResultList != null) {
-				ListIterator<?> questionResultListIterator = questionResultList.listIterator();
-				while (questionResultListIterator != null && questionResultListIterator.hasNext()) {
-					QuestionResult qResult = (QuestionResult) questionResultListIterator.next();
-					questionResultResponse.add(qResult);
+			ArrayList<QuestionResult> questionResultResponse;
+			if (questionOptionsList != null) {
+				ListIterator<?> questionOptionsListIterator = questionOptionsList.listIterator();
+				while (questionOptionsListIterator != null && questionOptionsListIterator.hasNext()) {
+					allQuestionResultObject = new HashMap<String,Object>();	
+					QuestionOptions questionOptionsResult = (QuestionOptions) questionOptionsListIterator.next();
+					allQuestionResultObject.put(IQuestionOptions.QUESTION, questionOptionsResult.getQuestion().toString());
+					allQuestionResultObject.put(IQuestionOptions.OPTION_A, questionOptionsResult.getOptionA());
+					allQuestionResultObject.put(IQuestionOptions.OPTION_B, questionOptionsResult.getOptionB());
+					allQuestionResultObject.put(IQuestionOptions.OPTION_C, questionOptionsResult.getOptionC());
+					allQuestionResultObject.put(IQuestionOptions.OPTION_D, questionOptionsResult.getOptionD());
+					questionResultResponse = new ArrayList<>();
+					if (questionResultList != null) {
+						ListIterator<?> questionResultListIterator = questionResultList.listIterator();
+						while (questionResultListIterator != null && questionResultListIterator.hasNext()) {
+							QuestionResult questionResultResult = (QuestionResult) questionResultListIterator.next();
+							if(questionResultResult.getQuestion().equals(questionOptionsResult.getQuestion())) {
+								questionResultResponse.add(questionResultResult);
+							}
+						}
+						allQuestionResultObject.put("Result", (ArrayList<QuestionResult>) questionResultResponse);
+					}
+					QuestionResultList.add(allQuestionResultObject);	
 				}
 			}
 			transaction.commit();
-			return questionResultResponse;
+			return QuestionResultList;
 		} catch (HibernateException he) {
 			if (transaction != null) {
 				transaction.rollback();

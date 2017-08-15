@@ -1,6 +1,7 @@
 package com.surveyin.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -33,7 +34,7 @@ public class QuestionResultWebController {
 	@GET
     @Path("/getallquestionresults")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public ArrayList<QuestionResult> getAllQuestionResults() {
+    public ArrayList<HashMap<String, Object>> getAllQuestionResults() {
         return QuestionResultMySqlDBServer.getInstance().getAllQuestionResult();
     }
 	

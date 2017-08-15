@@ -20,3 +20,9 @@ build/classes/c3p0.properties
 build/classes/hibernate.cfg.xml
 
 build/classes/QuestionOptions.hbm.xml
+
+*.war
+
+*.war
+
+SurveyINServer.war
