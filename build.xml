@@ -85,7 +85,7 @@
 			</fileset>
 		</copy>
 
-		<war destfile="dist/SurveyINServer.war" basedir="WebContent" needxmlfile="false">
-		</war>
+		<war destfile="/dist/SurveyINServer.war" basedir="WebContent" needxmlfile="false" />
+
 	</target>
 </project>
