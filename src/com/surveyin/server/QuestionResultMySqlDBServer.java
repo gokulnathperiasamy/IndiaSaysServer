@@ -207,7 +207,7 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 		try {
 			transaction = session.beginTransaction();
 			
-			ArrayList<HashMap<String,Object>> QuestionResultList = new ArrayList<>();
+			ArrayList<HashMap<String,Object>> questionResultListResponse = new ArrayList<>();
 			HashMap<String,Object> allQuestionResultObject;			
 			List<?> questionOptionsList = session.createCriteria(QuestionOptions.class).list();
 			List<?> questionResultList = session.createCriteria(QuestionResult.class).list();
@@ -233,11 +233,11 @@ public class QuestionResultMySqlDBServer extends BaseMySqlDBServer {
 						}
 						allQuestionResultObject.put("Result", (ArrayList<QuestionResult>) questionResultResponse);
 					}
-					QuestionResultList.add(allQuestionResultObject);	
+					questionResultListResponse.add(allQuestionResultObject);	
 				}
 			}
 			transaction.commit();
-			return QuestionResultList;
+			return questionResultListResponse;
 		} catch (HibernateException he) {
 			if (transaction != null) {
 				transaction.rollback();
