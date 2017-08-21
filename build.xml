@@ -1,34 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="SurveyINServer" default="war">
-
-	<path id="compile.classpath">
-		<fileset dir="WebContent/WEB-INF/lib">
-			<include name="*.jar" />
-		</fileset>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="SurveyINServer">
+	<property environment="env" />
+	<property name="ECLIPSE_HOME" value="../../../../../../Applications/Eclipse.app/Contents/Eclipse/" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
+	<path id="Web App Libraries.libraryclasspath">
+		<pathelement location="WebContent/WEB-INF/lib/antlr-2.7.7.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/asm-3.3.1.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/c3p0-0.9.1.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/com.sun.jersey.jersey-core-1.4.0.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/com.sun.jersey.jersey-server-1.4.0.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/dom4j-1.6.1.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/hibernate-c3p0-4.3.8.Final.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/hibernate-commons-annotations-4.0.5.Final.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/hibernate-core-4.3.8.Final.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/httpcore-4.3.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/jackson-all-1.9.0.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/javassist-3.18.1-GA.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/javax.servlet-api-3.0.1.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/javax.servlet.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/jboss-logging-3.1.4.GA.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/jboss-transaction-api_1.2_spec-1.0.0.Final.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/jersey-core-1.15.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/jersey-json.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/json_simple-1.1.jar" />
+		<pathelement location="WebContent/WEB-INF/lib/mysql-connector-java-5.1.31.jar" />
+		<pathelement location="WebContent/WEB-INF/classes" />
 	</path>
-
+	<path id="EAR Libraries.libraryclasspath" />
+	<path id="SurveyINServer.classpath">
+		<pathelement location="build/classes" />
+		<path refid="Web App Libraries.libraryclasspath" />
+		<path refid="EAR Libraries.libraryclasspath" />
+	</path>
 	<target name="init">
 		<mkdir dir="build/classes" />
-		<mkdir dir="dist" />
+		<copy includeemptydirs="false" todir="build/classes">
+			<fileset dir="src">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
 	</target>
-
-	<target name="compile" depends="init">
-		<javac destdir="build/classes" debug="true" srcdir="src">
-			<classpath refid="compile.classpath" />
+	<target name="clean">
+		<delete dir="build/classes" />
+	</target>
+	<target depends="clean" name="cleanall" />
+	<target depends="build-subprojects,build-project" name="build" />
+	<target name="build-subprojects" />
+	<target depends="init" name="build-project">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+			<src path="src" />
+			<classpath refid="SurveyINServer.classpath" />
 		</javac>
 	</target>
+	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects" />
+	<target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+		<copy todir="${ant.library.dir}">
+			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
+		</copy>
+		<unzip dest="${ant.library.dir}">
+			<patternset includes="jdtCompilerAdapter.jar" />
+			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
+		</unzip>
+	</target>
+	<target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
+		<antcall target="build" />
+	</target>
 
-	<target name="war" depends="compile">
-		<war destfile="dist/SurveyINServer.war" webxml="WebContent/WEB-INF/web.xml">
-			<fileset dir="WebContent" />
-			<lib dir="WebContent/WEB-INF/lib" />
-			<classes dir="build/classes" />
+	<target name="war" description="Bundles the application as a WAR file" depends="clean, build">
+		<mkdir dir="WebContent/WEB-INF/classes" />
+
+		<copy includeemptydirs="false" todir="WebContent/WEB-INF/classes">
+			<fileset dir="build/classes">
+				<include name="**/*.class" />
+			</fileset>
+		</copy>
+
+		<war destfile="dist/SurveyINServer.war" basedir="WebContent" needxmlfile="false">
 		</war>
 	</target>
-
-	<target name="clean">
-		<delete dir="dist" />
-		<delete dir="build" />
-	</target>
-
 </project>
