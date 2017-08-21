@@ -40,6 +40,7 @@
 		<path refid="Web App Libraries.libraryclasspath" />
 		<path refid="EAR Libraries.libraryclasspath" />
 	</path>
+
 	<target name="init">
 		<mkdir dir="build/classes" />
 		<copy includeemptydirs="false" todir="build/classes">
@@ -48,20 +49,22 @@
 			</fileset>
 		</copy>
 	</target>
-	<target name="clean">
-		<delete dir="build/classes" />
-	</target>
-	<target depends="clean" name="cleanall" />
+
 	<target depends="build-subprojects,build-project" name="build" />
+	
 	<target name="build-subprojects" />
+	
 	<target depends="init" name="build-project">
 		<echo message="${ant.project.name}: ${ant.file}" />
+		<mkdir dir="dist" />
 		<javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
 			<src path="src" />
 			<classpath refid="SurveyINServer.classpath" />
 		</javac>
 	</target>
+
 	<target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects" />
+
 	<target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
 		<copy todir="${ant.library.dir}">
 			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
@@ -71,6 +74,7 @@
 			<fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar" />
 		</unzip>
 	</target>
+	
 	<target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
 		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter" />
 		<antcall target="build" />
@@ -85,7 +89,18 @@
 			</fileset>
 		</copy>
 
-		<war destfile="/dist/SurveyINServer.war" basedir="WebContent" needxmlfile="false" />
+		<war destfile="dist/SurveyINServer.war" basedir="WebContent" needxmlfile="false" />
 
+	</target>
+
+	<target name="compile" depends="init">
+		<javac destdir="build/classes" debug="true" srcdir="src">
+			<classpath refid="compile.classpath" />
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete dir="dist" />
+		<delete dir="build" />
 	</target>
 </project>
