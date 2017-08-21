@@ -50,7 +50,7 @@
 		</copy>
 	</target>
 
-	<target depends="build-subprojects,build-project" name="build" />
+	<target depends="build-subprojects,build-project,war" name="build" />
 	
 	<target name="build-subprojects" />
 	
@@ -80,7 +80,7 @@
 		<antcall target="build" />
 	</target>
 
-	<target name="war" description="Bundles the application as a WAR file" depends="clean, build">
+	<target name="war" description="Bundles the application as a WAR file">
 		<mkdir dir="WebContent/WEB-INF/classes" />
 
 		<copy includeemptydirs="false" todir="WebContent/WEB-INF/classes">

@@ -28,3 +28,7 @@ build/classes/QuestionOptions.hbm.xml
 SurveyINServer.war
 
 *.war
+
+build/classes/SurveyINQuestions.json
+
+build/classes/QuestionResult.hbm.xml
